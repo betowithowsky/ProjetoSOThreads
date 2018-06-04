@@ -18,11 +18,12 @@ public class CarrosThread extends Thread{
     private String equipe;
     private int tempoVolta;
 
+    //metodo construtor
     public CarrosThread(String nome, String equipe, int tempo){
         this.nome = nome;
         this.equipe = equipe;
         this.tempoVolta = tempo;
-        start();
+        start(); //auto starta o run()
     }
 
     public void run(){        

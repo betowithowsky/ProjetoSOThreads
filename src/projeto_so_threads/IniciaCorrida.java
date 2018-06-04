@@ -20,9 +20,13 @@ public class IniciaCorrida {
         
         boolean nextRound = true; 
         
+        //instancia o farol de largada ~ perfumaria
         FarolLargada farol = new FarolLargada();
+        
+        //da um start no farol fazendo com que ele execute oque está no metodo run()
         farol.start();
         
+        //aguarda o farol ser excecutado e finalizado
         farol.join();
         
         for(int i = 1; i <= numVoltas; i++){
@@ -32,13 +36,14 @@ public class IniciaCorrida {
                 try{
                     nextRound = false;
                 
+                    //mensagem com numero voltas ~
                     if(i < numVoltas){
                     System.out.println("Volta: " + i);
                     }else if(i == numVoltas){
                         System.out.println("Volta Final!!!\nVencedores por ordem de chegada:");
                     }
                     
-                    CarrosThread piloto1 = new CarrosThread("Sebastian Vettel", "Ferrari", random.nextInt(tempoVoltaMin + 1) + 1000); //instancia uma nova thread CarrosThread 
+                    CarrosThread piloto1 = new CarrosThread("Sebastian Vettel", "Ferrari", random.nextInt(tempoVoltaMin + 1) + 1000); //instancia uma nova thread CarrosThread, com os atributos que o construtor nescessita 
                     CarrosThread piloto2 = new CarrosThread("Kimi Raikkonen", "Ferrari", random.nextInt(tempoVoltaMin + 1) + 1000);
                     CarrosThread piloto3 = new CarrosThread("Fernando Alonso", "McLaren", random.nextInt(tempoVoltaMin + 1) + 1000);
                     CarrosThread piloto4 = new CarrosThread("Stoffel Vandoorne", "McLaren", random.nextInt(tempoVoltaMin + 1) + 1000);
@@ -54,7 +59,7 @@ public class IniciaCorrida {
                     piloto6.join(); //..
                     
                     
-                    
+                    //verifica se o estado de todas as threads ja ta em terminado se estiver vai para proxima volta
                     if(piloto1.getState() == Thread.State.TERMINATED && piloto2.getState() == Thread.State.TERMINATED && piloto3.getState() == Thread.State.TERMINATED && piloto4.getState() == Thread.State.TERMINATED && piloto5.getState() == Thread.State.TERMINATED && piloto6.getState() == Thread.State.TERMINATED){
                         //System.out.println("todos completaram a volta.");
                         nextRound = true;
